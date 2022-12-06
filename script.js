@@ -16,8 +16,6 @@ for (i = 0; i < 26; i++) {
   upperCase.push(lowerCase[i].toUpperCase());
 }
 
-
-
 // if an invalid input is entered, user can try again. If user fails again, the writePassword starts over at the beginning
 function errorMessage() {
   alert("The length you have chosen does not fall in range 8-128. Please try again");
@@ -62,14 +60,14 @@ function writePassword() {
   //  value from it, the loop terminates when the length of the password string reaches userLength
   for (i = 0; i < userLength; i++) {
     var subArray = mainArray[Math.floor(Math.random() * 4)];
-    password = password.concat(subArray[Math.floor(Math.random() * subArray.length)]);
+    console.log(subArray)
+    // password = password.concat(subArray[Math.floor(Math.random() * subArray.length)]);
   }
   alert("your  NEW password is " + password);
 
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
