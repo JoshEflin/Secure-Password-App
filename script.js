@@ -42,6 +42,7 @@ function writePassword() {
     mainArray.push(upperCase)
   }
   console.log(mainArray)
+
   var includeChars = confirm("Would you liked to include special characters: 'OK' for 'YES' ; 'Cancel' for 'NO'");
   if (includeChars) {
     mainArray.push(charArray)
@@ -52,6 +53,7 @@ function writePassword() {
   }
 
   console.log(mainArray)
+
   //  I need to create an array of arrays. nested arrays are toggled on and off depending on user input answers (should be boolean values)
   // use Math.random() to select items from arrays that are "toggled" on.  use Math.Random to select which nested array should have a random value selected
   // step 1: create an empty array, allow user input to append the array(with an array i.e.'lowercase letters' ) using the .push method
@@ -59,18 +61,19 @@ function writePassword() {
  
 //  this for loop randomly selects one of four arrays from which to choose a character. Then it randomly selects a character and adds that character to a string called password.
   for (i = 0; i < userLength; i++){
-    var subArray = mainArray[Math.floor(Math.random() * 4)]
+    var subArray = mainArray[Math.floor(Math.random() * 4)];
     
-    var password =""
-    console.log(password.concat(subArray[Math.floor(Math.random() * subArray.length)]))
     
+    password = password.concat(subArray[Math.floor(Math.random() * subArray.length)]);
+    
+    console.log(password);
   
  }
-  alert("your password is " + password);
+  alert("your  NEW password is " + password);
 
-  var passwordText = document.querySelector("#password");
+   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+   passwordText.value = password;
 
 }
 
