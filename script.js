@@ -1,6 +1,6 @@
 // Assignment Code
 //  CURRENT BUGS!-
-//  click handler time is an eternity
+//  generator only works if all user prompts evaluate to true
 
 var generateBtn = document.querySelector("#generate");
 
@@ -59,11 +59,11 @@ function writePassword() {
   //  step 2:  write a for loop to use a randomly generated number to select a nested array, and select a  
   //  value from it, the loop terminates when the length of the password string reaches userLength
   for (i = 0; i < userLength; i++) {
-    var subArray = mainArray[Math.floor(Math.random() * 4)];
-    console.log(subArray)
-    // password = password.concat(subArray[Math.floor(Math.random() * subArray.length)]);
+    var subArray = mainArray[Math.floor(Math.random() * mainArray.length)];
+    
+    password = password.concat(subArray[Math.floor(Math.random() * subArray.length)]);
   }
-  alert("your  NEW password is " + password);
+  alert("your NEW password is " + password);
 
   var passwordText = document.querySelector("#password");
 
