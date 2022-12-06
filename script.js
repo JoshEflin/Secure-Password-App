@@ -10,7 +10,9 @@ for (i = 0 ; i < 26 ; i ++) {
 }
 var numArray = [ "0" , "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9"];
 var charArray = ["!" , "@" , "#" , "$" , "%" , "^" , "&" , "*"];
-
+//  creates an empty array  
+var mainArray = []
+var password = ""
 
 // if an invalid input is entered, user can try again. If user fails again, the writePassword starts over at the beginning
 function errorMessage() {
@@ -30,20 +32,41 @@ function writePassword() {
   }
 
   var lowerLetters = confirm("Would you liked to include lowercase letters: 'OK' for 'YES' ; 'Cancel' for 'NO'");
+  if (lowerLetters) {
+    mainArray.push(lowerCase)
+  }
+  
 
   var upperLetters = confirm("Would you liked to include uppercase letters: 'OK' for 'YES' ; 'Cancel' for 'NO'");
-
+  if (upperLetters){
+    mainArray.push(upperCase)
+  }
+  console.log(mainArray)
   var includeChars = confirm("Would you liked to include special characters: 'OK' for 'YES' ; 'Cancel' for 'NO'");
-
+  if (includeChars) {
+    mainArray.push(charArray)
+  }
   var includeNums = confirm("Would you liked to include numbers: 'OK' for 'YES' ; 'Cancel' for 'NO'");
+  if (includeNums) {
+    mainArray.push(numArray)
+  }
 
+  console.log(mainArray)
   //  I need to create an array of arrays. nested arrays are toggled on and off depending on user input answers (should be boolean values)
   // use Math.random() to select items from arrays that are "toggled" on.  use Math.Random to select which nested array should have a random value selected
   // step 1: create an empty array, allow user input to append the array(with an array i.e.'lowercase letters' ) using the .push method
   //  step 2:  write a for loop to use a randomly generated number to select a nested array, and a value from it, the loop terminates when its value reaches userLength
-
-
-  var password = generatePassword();
+ 
+//  this for loop randomly selects one of four arrays from which to choose a character. Then it randomly selects a character and adds that character to a string called password.
+  for (i = 0; i < userLength; i++){
+    var subArray = mainArray[Math.floor(Math.random() * 4)]
+    
+    var password =""
+    console.log(password.concat(subArray[Math.floor(Math.random() * subArray.length)]))
+    
+  
+ }
+  alert("your password is " + password);
 
   var passwordText = document.querySelector("#password");
 
