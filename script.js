@@ -11,11 +11,20 @@ const lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "
 const numArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const charArray = ["!", "@", "#", "$", "%", "^", "&", "*" , "'" , ";" , "(" , ")" , "-" , "+" , "{" , "}" , "|" , "~"];
 
-// !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 // for loop makes all the lower case letters uppcase for the upperCase array
 for (i = 0; i < 26; i++) {
   upperCase.push(lowerCase[i].toUpperCase());
 }
+
+var lowerLetters = "lowercase letters";
+var upperLetters = "uppercase letters";
+var includeChars = "special characters";
+var includeNums = "numbers";
+
+var mainArray = [upperCase, lowerCase, numArray, charArray];  
+var prompts = [upperLetters, lowerLetters, includeChars, includeNums]
+
+
 
 // if an invalid input is entered, user can try again. If user fails again, the writePassword starts over at the beginning
 function errorMessage() {
@@ -26,49 +35,49 @@ function errorMessage() {
 // Write password to the #password input
 function writePassword() {
   // declare variables locally so that each time the function is run, the main array and previous password are removed (in case the user has run the function several times)
-  // step 1: create an empty array, and an empty string. Allow user input to append the array (with an array i.e.'lowercase letters') using the .push method
-  var mainArray = []
-  var password = ""
+  // step 1: create an empty array, and an empty string. These will be used later
+  
+  
+  var userArray = [];
+  var password = "";
   alert("Hello! you are about to generate a password. Please press 'OK' to choose parameters")
   var userLength = prompt("Your password must be between 8 and 128 characters. How many characters do you want it to be?");
-//  In case user inputs a string, mulitply string by a number. This will change its type to NaN which we can test for using the .is() method and send the user to our error message.
-var numTest = userLength *2;
+  //  In case user inputs a string, mulitply string by a number. This will change its type to NaN which we can test for using the .is() method and send the user to our error message.
+  var numTest = userLength *2;
   if (Object.is(numTest, NaN)){
     console.log(numTest);
-  errorMessage();
-  return;
-}
-
+    errorMessage();
+    return;
+  }
   if (userLength < 8 || userLength > 128) {
     errorMessage();
-    // return statement, prevents  the below code from executing  in the event of an invalid input, otherwise the below code will run AFTER the writePassword call on ln 22
+  // return statement, prevents  the below code from executing  in the event of an invalid input, otherwise the below code will run AFTER the writePassword call on ln 22
     return;
-  
   }
 
-  var lowerLetters = confirm("Would you liked to include lowercase letters: 'OK' for 'YES' ; 'Cancel' for 'NO'");
-  if (lowerLetters) {
-    mainArray.push(lowerCase)
-  }
+  // ask the user  which arrays should be inlcuded in the password generator algorith. .push() them to the userArray, and append them to the HTML in case the user forgot selection
+  for(i = 0 ; i < mainArray.length; i++){
 
-  var upperLetters = confirm("Would you liked to include uppercase letters: 'OK' for 'YES' ; 'Cancel' for 'NO'");
-  if (upperLetters) {
-    mainArray.push(upperCase)
+    confirmResponse = confirm( "would you like to include " + prompts[i] +": 'OK' for 'YES' ; 'Cancel' for 'NO'")
+    if (confirmResponse){
+      userArray.push(mainArray[i]);
+      var charTypes = document.querySelector(".card");
+      var newElement = document.createElement("p");
+      newElement.textContent= "You selected to use " + prompts[i];
+      alert(" You have selected to include " + prompts[i]);
+      charTypes.appendChild(newElement)
+      console.log(newElement)
+    } else{
+      alert("You have selected NOT to include " + prompts[i])
+    }
   }
+   
 
-  var includeChars = confirm("Would you liked to include special characters: 'OK' for 'YES' ; 'Cancel' for 'NO'");
-  if (includeChars) {
-    mainArray.push(charArray)
-  }
-  var includeNums = confirm("Would you liked to include numbers: 'OK' for 'YES' ; 'Cancel' for 'NO'");
-  if (includeNums) {
-    mainArray.push(numArray)
-  }
 
-  //  step 2:  write a for loop to use a randomly generated number to select a nested array, and select a  
+ //  step 2:  write a for loop to use a randomly generated number to select a nested array, and select a  
   //  value from it, the loop terminates when the length of the password string reaches userLength
   for (i = 0; i < userLength; i++) {
-    var subArray = mainArray[Math.floor(Math.random() * mainArray.length)];
+    var subArray = userArray[Math.floor(Math.random() * userArray.length)];
     
     password = password.concat(subArray[Math.floor(Math.random() * subArray.length)]);
   }
@@ -78,6 +87,5 @@ var numTest = userLength *2;
 
   passwordText.value = password;
 }
-
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
