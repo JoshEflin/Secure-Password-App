@@ -35,7 +35,6 @@ function writePassword() {
 var numTest = userLength *2;
   if (Object.is(numTest, NaN)){
     console.log(numTest);
-  console.log("oops")
   errorMessage();
   return;
 }
