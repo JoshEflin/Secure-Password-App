@@ -1,6 +1,7 @@
 // Assignment Code
 //  CURRENT BUGS!-
-//  generator only works if all user prompts evaluate to true
+// what if user inputs a string
+
 
 var generateBtn = document.querySelector("#generate");
 
@@ -18,7 +19,7 @@ for (i = 0; i < 26; i++) {
 
 // if an invalid input is entered, user can try again. If user fails again, the writePassword starts over at the beginning
 function errorMessage() {
-  alert("The length you have chosen does not fall in range 8-128. Please try again");
+  alert("The length you have chosen does not fall in range 8-128. Please input a number between 8 and 128 ");
   writePassword();
 }
 
@@ -30,11 +31,20 @@ function writePassword() {
   var password = ""
   alert("Hello! you are about to generate a password. Please press 'OK' to choose parameters")
   var userLength = prompt("Your password must be between 8 and 128 characters. How many characters do you want it to be?");
+//  In case user inputs a string, mulitply string by a number. This will change its type to NaN which we can test for using the .is() method and send the user to our error message.
+var numTest = userLength *2;
+  if (Object.is(numTest, NaN)){
+    console.log(numTest);
+  console.log("oops")
+  errorMessage();
+  return;
+}
 
   if (userLength < 8 || userLength > 128) {
     errorMessage();
     // return statement, prevents  the below code from executing  in the event of an invalid input, otherwise the below code will run AFTER the writePassword call on ln 22
     return;
+  
   }
 
   var lowerLetters = confirm("Would you liked to include lowercase letters: 'OK' for 'YES' ; 'Cancel' for 'NO'");
