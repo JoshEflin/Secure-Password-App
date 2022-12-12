@@ -17,7 +17,9 @@ for (i = 0; i < 26; i++) {
 }
 
 const mainArray = [upperCase, lowerCase, numArray, charArray];
-var prompts = ["uppercase letters", "lowercase letters", "special characters","numbers"]
+const prompts = ["uppercase letters", "lowercase letters", "special characters","numbers"]
+// charTypes declared  globally to be used in two functions
+var charTypes = document.querySelector(".card");
 
 // if an invalid input is entered, user can try again. If user fails again, the writePassword function starts over at the beginning
 function errorMessage() {
@@ -28,7 +30,6 @@ function removePrevious() {
   var child = document.querySelectorAll(".test");
   console.log(child)
     for (i = 0; i <child.length; i ++){
-      var charTypes = document.querySelector(".card")
       charTypes.removeChild(child[i]);
     }
 }
@@ -62,7 +63,6 @@ function writePassword() {
     confirmResponse = confirm("would you like to include " + prompts[i] + ": 'OK' for 'YES' ; 'Cancel' for 'NO'")
     if (confirmResponse) {
       userArray.push(mainArray[i]);
-      var charTypes = document.querySelector(".card");
       var newElement = document.createElement("p");
       newElement.setAttribute("class", "test")
       newElement.textContent = "You selected to use " + prompts[i];
