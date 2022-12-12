@@ -14,7 +14,7 @@ for (i = 0; i < 26; i++) {
 }
 
 const mainArray = [upperCase, lowerCase, numArray, charArray];
-const prompts = ["uppercase letters", "lowercase letters", "special characters", "numbers"]
+const prompts = ["uppercase letters", "lowercase letters", "numbers" , "special characters" ]
 // charTypes declared  globally to be used in two functions
 const charTypes = document.querySelector(".card");
 
