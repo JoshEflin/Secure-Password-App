@@ -21,12 +21,12 @@ const prompts = ["uppercase letters", "lowercase letters", "special characters",
 // charTypes declared  globally to be used in two functions
 const charTypes = document.querySelector(".card");
 
-// if an invalid input is entered, user can try again. If user fails again, the writePassword function starts over at the beginning
+// if an invalid input is entered, user can try again. If user fails again, the writePassword() function def: ln 37 called ln:89 calledby:writePassword()-- starts over at the beginning
 function errorMessage() {
   alert("The length you have chosen does not fall in range 8-128. Please input a number between 8 and 128");
   writePassword();
 }
-// The removePrevious()function removes <p> tags that have been appended to the div.card incase the user would like to generate more passwords 
+// The removePrevious()( Def: ln 30 calledby:writepassword()function removes <p> tags that have been appended to the div.card incase the user would like to generate more passwords 
 function removePrevious() {
   let child = document.querySelectorAll(".test");
   for (i = 0; i < child.length; i++) {
@@ -49,12 +49,13 @@ function writePassword() {
     errorMessage();
     return;
   }
-  // return statement, prevents  the below code from executing  in the event of an invalid input, otherwise the below code will continue to
-  // run AFTER the writePassword() call  within the  errormessage() function
+  // This return statement  prevents  the below code from executing  in the event of an invalid input, otherwise the below code will continue to
+  // run AFTER the writePassword() call  within the  errormessage() function. 
 
   removePrevious();
-  // ask the user  which arrays should be inlcuded in the password generator algorith. .push() them to the userArray, and append them to the HTML in case the user forgot selection
-  // if the user is running the function multiple times removePrevious will restore the HTML file to its original state.
+
+  // step 2: Ask the user  which arrays should be inlcuded in the password generator algorithm. .push() them to the userArray, and append them to the HTML in case the user forgot selection
+  // if the user is running the function multiple times ---- removePrevious()  def: ln 30 called:ln55---- will restore the HTML file to its original state.
   for (i = 0; i < mainArray.length; i++) {
 
     confirmResponse = confirm("would you like to include " + prompts[i] + ": 'OK' for 'YES' ; 'Cancel' for 'NO'")
@@ -70,8 +71,8 @@ function writePassword() {
       alert("You have selected NOT to include " + prompts[i])
     }
   }
-  //  step 2:  write a for loop to use a randomly generated number to select a nested array, and select a  
-  //  value from it, the loop terminates when the length of the password string reaches userLength
+  //  step 3:write a for loop to use a randomly generated number to select a nested array, and another randomly generated number to  select a  
+  //  value from it, the loop terminates when the length of the password variable declared ln:42 string reaches userLength
   for (i = 0; i < userLength; i++) {
     var subArray = userArray[Math.floor(Math.random() * userArray.length)];
 
