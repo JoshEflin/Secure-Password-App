@@ -6,6 +6,15 @@ https://josheflin.github.io/Secure-Password-App/
 
 # Description
 
+The password generator webpage above generates a password. The user chooses which 
+types of characters to include as well as how long the password should be between 
+8 and 128 characters.  It uses the window objects, confirm() alert() and promopt() 
+methods as well as appending the users choices to the HTML.
+
+# Screenshot
+![screenshot](password-generator.png)
+
+
 # License
 
 Copyright (c) <2022> <The world>
